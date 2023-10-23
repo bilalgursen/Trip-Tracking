@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html className="bg-[#453976]" lang="en">
       <body className={inter.className}>
-        <main className="max-w-screen-md mx-auto p-12">{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   )
