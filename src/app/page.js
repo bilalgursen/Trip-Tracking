@@ -3,10 +3,9 @@ import { BiChevronRight, BiPlus } from "react-icons/bi";
 export default function Home() {
   return (
     <div className="grid grid-cols-main-grid gap-1">
-
       {/* Head */}
-      <div className="col-span-full bg-slate-300 p-4">
-        <div className="navbar bg-base-100 rounded-full shadow-xl">
+      <div className="col-span-full p-4">
+        <div className="navbar bg-slate-50 text-base-300 rounded-full shadow-xl">
           <div className="navbar-start">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -28,7 +27,7 @@ export default function Home() {
             </div>
           </div>
           <div className="navbar-center">
-            <a className="btn btn-ghost normal-case text-xl">TripTracking</a>
+            <a className="btn btn-ghost normal-case text-4xl gap-0"><span className="me-0 text-lime-700">Trip</span><span className="font-bold text-orange-600">Tracking</span></a>
           </div>
           <div className="navbar-end">
             <button className="btn btn-ghost btn-circle">
@@ -69,13 +68,38 @@ export default function Home() {
           </div>
         </div>
       </div>
-      
+
       {/* Aside Menü */}
-      <div className="p-6 col-span-full lg:col-span-1 bg-slate-400 h-screen">
+      <div className="p-6 px-14 col-span-full lg:col-span-1 h-auto lg:h-screen">
+        <div className="indicator w-full my-4 cursor-pointer">
+          <div className="grid w-full h-20 bg-transparent bg-base-300 place-items-center rounded-3xl ring-2 ring-lime-400 ring-offset-4 ring-offset-lime-600 hover:ring-orange-400 hover:ring-offset-orange-600">
+            <span className="text-3xl font-semibold">Afyonkarahisar</span>
+          </div>
+        </div>
+        <div className="divider animate-pulse divider-horizontal h-24 mr-auto ml-auto"></div>
+        <div className="indicator w-full my-4 cursor-pointer">
+          <span className="indicator-item badge badge-xs badge-primary border-none bg-orange-600 me-4 mt-2 z-10 p-3">3 Gün</span>
+          <span className="indicator-item badge badge-xl animate-pulse badge-primary border-none bg-orange-500 me-4 mt-2 p-4">3 Gün</span>
+          <div className="grid w-full h-20 bg-slate-50 place-items-center rounded-3xl ring-2 ring-lime-400 ring-offset-4 ring-offset-lime-600 hover:ring-orange-400 hover:ring-offset-orange-600">
+            <span className="text-3xl  font-semibold">İstanbul</span>
+          </div>
+        </div>
+        <div className="divider animate-pulse divider-horizontal h-24 mr-auto ml-auto"></div>
+        <div className="indicator w-full my-4 cursor-pointer">
+          <div className="grid w-full h-20 bg-slate-50 place-items-center rounded-3xl ring-2 ring-lime-400 ring-offset-4 ring-offset-lime-600 hover:ring-orange-400 hover:ring-offset-orange-600">
+            <span className="text-3xl  font-semibold">Sakarya</span>
+          </div>
+        </div>
+        <div className="divider animate-ping divider-horizontal h-24 mr-auto ml-auto"></div>
+        <div className="indicator w-full my-4 cursor-pointer animate-pulse">
+          <div className="grid w-full h-20 bg-gradient-to-t from-slate-600 to-slate-400 place-items-center rounded-3xl ring-2 ring-slate-400 ring-offset-4 ring-offset-slate-600 hover:ring-orange-400 hover:ring-offset-orange-600">
+            <span className="text-6xl  font-semibold">+</span>
+          </div>
+        </div>
       </div>
 
       {/* Content */}
-      <div className="flex gap-4 flex-col justify-center p-6 col-span-full lg:col-span-1 bg-slate-500 self-start items-stretch">
+      <div className="flex gap-4 flex-col justify-center p-6 col-span-full lg:col-span-1 self-start items-stretch">
         <div className="flex text-xl justify-between overflow-x-auto">
           <div className="py-4 px-8 bg-white rounded shadow-md flex font-medium text-black items-center justify-center">
             Amasya
@@ -105,7 +129,7 @@ export default function Home() {
           <div className="text-3xl font-normal text-black">
             <span className="text-[#453976]">İstanbul</span> İçin Hava Durumu
           </div>
-          <div className="w-full flex flex-col space-y-4 2xl:space-y-0 2xl:flex-row space-x-0 2xl:space-x-4 rounded bg-[#423670] text-white p-8 mt-8">
+          <div className="w-full flex flex-col space-y-4 2xl:space-y-0 2xl:flex-row space-x-0 2xl:space-x-4 rounded bg-gradient-to-t from-orange-700 to-orange-500 text-white p-8 mt-8">
             <div className="w-64">
               <img
                 className="flex-none h-32"
@@ -161,7 +185,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }
