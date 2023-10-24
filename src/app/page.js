@@ -1,6 +1,14 @@
-import { BiChevronRight, BiPlus } from "react-icons/bi";
+'use client'
+
+import { useState } from 'react'
+import { BiChevronRight, BiPlus } from 'react-icons/bi'
 
 export default function Home() {
+  const [travels, setTravels] = useState([
+    { county: 'İstanbul', day: 5 },
+    { county: 'Sakarya', day: 3 }
+  ])
+
   return (
     <div className="grid grid-cols-main-grid gap-1">
       {/* Head */}
@@ -27,7 +35,10 @@ export default function Home() {
             </div>
           </div>
           <div className="navbar-center">
-            <a className="btn btn-ghost normal-case text-4xl gap-0"><span className="me-0 text-lime-700">Trip</span><span className="font-bold text-orange-600">Tracking</span></a>
+            <a className="btn btn-ghost normal-case text-4xl gap-0">
+              <span className="me-0 text-lime-700">Trip</span>
+              <span className="font-bold text-orange-600">Tracking</span>
+            </a>
           </div>
           <div className="navbar-end">
             <button className="btn btn-ghost btn-circle">
@@ -71,29 +82,34 @@ export default function Home() {
 
       {/* Aside Menü */}
       <div className="p-6 px-14 col-span-full lg:col-span-1 h-auto lg:h-screen">
-        <div className="indicator w-full my-4 cursor-pointer">
-          <div className="grid w-full h-20 bg-transparent bg-base-300 place-items-center rounded-3xl ring-2 ring-lime-400 ring-offset-4 ring-offset-lime-600 hover:ring-orange-400 hover:ring-offset-orange-600">
-            <span className="text-3xl font-semibold">Afyonkarahisar</span>
+        {travels.map((travel, i) => (
+          <div key={i}>
+            <div className="indicator w-full my-4 cursor-pointer">
+              <span className="indicator-item badge badge-xs badge-primary border-none bg-orange-600 me-4 mt-2 z-10 p-3">
+                {travel.day} Gün
+              </span>
+
+              <div className="grid w-full h-20 bg-slate-50 place-items-center rounded ring-1 ring-lime-400 ring-offset-4 ring-offset-lime-600 hover:ring-orange-400 hover:ring-offset-orange-600">
+                <span className="text-3xl  font-semibold">{travel.county}</span>
+              </div>
+            </div>
+            <div className="divider animate-pulse divider-horizontal h-24 mr-auto ml-auto"></div>
           </div>
-        </div>
-        <div className="divider animate-pulse divider-horizontal h-24 mr-auto ml-auto"></div>
-        <div className="indicator w-full my-4 cursor-pointer">
-          <span className="indicator-item badge badge-xs badge-primary border-none bg-orange-600 me-4 mt-2 z-10 p-3">3 Gün</span>
-          <span className="indicator-item badge badge-xl animate-pulse badge-primary border-none bg-orange-500 me-4 mt-2 p-4">3 Gün</span>
-          <div className="grid w-full h-20 bg-slate-50 place-items-center rounded-3xl ring-2 ring-lime-400 ring-offset-4 ring-offset-lime-600 hover:ring-orange-400 hover:ring-offset-orange-600">
-            <span className="text-3xl  font-semibold">İstanbul</span>
-          </div>
-        </div>
-        <div className="divider animate-pulse divider-horizontal h-24 mr-auto ml-auto"></div>
-        <div className="indicator w-full my-4 cursor-pointer">
-          <div className="grid w-full h-20 bg-slate-50 place-items-center rounded-3xl ring-2 ring-lime-400 ring-offset-4 ring-offset-lime-600 hover:ring-orange-400 hover:ring-offset-orange-600">
-            <span className="text-3xl  font-semibold">Sakarya</span>
-          </div>
-        </div>
-        <div className="divider animate-ping divider-horizontal h-24 mr-auto ml-auto"></div>
-        <div className="indicator w-full my-4 cursor-pointer animate-pulse">
-          <div className="grid w-full h-20 bg-gradient-to-t from-slate-600 to-slate-400 place-items-center rounded-3xl ring-2 ring-slate-400 ring-offset-4 ring-offset-slate-600 hover:ring-orange-400 hover:ring-offset-orange-600">
-            <span className="text-6xl  font-semibold">+</span>
+        ))}
+        <div
+          className="indicator w-full my-4 cursor-pointer animate-pulse"
+          onClick={() =>
+            setTravels((prevState) => [
+              ...prevState,
+              {
+                county: 'Amasya',
+                day: 4
+              }
+            ])
+          }
+        >
+          <div className="grid w-full h-20 bg-gradient-to-t from-slate-600 to-slate-400 place-items-center rounded ring-1 ring-slate-400 ring-offset-4 ring-offset-slate-600 hover:ring-orange-400 hover:ring-offset-orange-600">
+            <span className="text-6xl font-semibold">+</span>
           </div>
         </div>
       </div>
@@ -186,5 +202,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  );
+  )
 }
