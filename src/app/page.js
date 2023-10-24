@@ -10,7 +10,7 @@ export default function Home() {
   ])
 
   return (
-    <div className="grid grid-cols-main-grid gap-1">
+    <div className="grid grid-cols-main-grid gap-1 h-full">
       {/* Head */}
       <div className="col-span-full p-4">
         <div className="navbar bg-slate-50 text-base-300 rounded-full shadow-xl">
@@ -78,12 +78,40 @@ export default function Home() {
             </button>
           </div>
         </div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault()
+
+            setTravels((prevState) => [
+              ...prevState,
+              {
+                county: e.target.county.value,
+                day: 4
+              }
+            ])
+          }}
+        >
+          <input
+            type="text"
+            name="county"
+            placeholder="Type here"
+            class="mt-8 input w-full"
+          />
+        </form>
       </div>
 
       {/* Aside Menü */}
-      <div className="p-6 px-14 col-span-full lg:col-span-1 h-auto lg:h-screen">
+      <div className="p-6 px-14 col-span-full lg:col-span-1 h-auto overflow-y-auto">
+        <div>
+          <div className="indicator w-full my-4 cursor-pointer">
+            <div className="grid w-full h-20 bg-slate-50 place-items-center rounded ring-1 ring-lime-400 ring-offset-4 ring-offset-lime-600 hover:ring-orange-400 hover:ring-offset-orange-600">
+              <span className="text-3xl  font-semibold">Start Point</span>
+            </div>
+          </div>
+        </div>
         {travels.map((travel, i) => (
           <div key={i}>
+            <div className="divider animate-pulse divider-horizontal h-24 mr-auto ml-auto"></div>
             <div className="indicator w-full my-4 cursor-pointer">
               <span className="indicator-item badge badge-xs badge-primary border-none bg-orange-600 me-4 mt-2 z-10 p-3">
                 {travel.day} Gün
@@ -93,54 +121,12 @@ export default function Home() {
                 <span className="text-3xl  font-semibold">{travel.county}</span>
               </div>
             </div>
-            <div className="divider animate-pulse divider-horizontal h-24 mr-auto ml-auto"></div>
           </div>
         ))}
-        <div
-          className="indicator w-full my-4 cursor-pointer animate-pulse"
-          onClick={() =>
-            setTravels((prevState) => [
-              ...prevState,
-              {
-                county: 'Amasya',
-                day: 4
-              }
-            ])
-          }
-        >
-          <div className="grid w-full h-20 bg-gradient-to-t from-slate-600 to-slate-400 place-items-center rounded ring-1 ring-slate-400 ring-offset-4 ring-offset-slate-600 hover:ring-orange-400 hover:ring-offset-orange-600">
-            <span className="text-6xl font-semibold">+</span>
-          </div>
-        </div>
       </div>
 
       {/* Content */}
       <div className="flex gap-4 flex-col justify-center p-6 col-span-full lg:col-span-1 self-start items-stretch">
-        <div className="flex text-xl justify-between overflow-x-auto">
-          <div className="py-4 px-8 bg-white rounded shadow-md flex font-medium text-black items-center justify-center">
-            Amasya
-          </div>
-          <span className="text-4xl flex items-center animate-pulse">
-            {Array(3)
-              .fill(0)
-              .map((_, i) => (
-                <BiChevronRight key={i} />
-              ))}
-          </span>
-          <div className="py-4 px-8 bg-white rounded shadow-md flex font-medium text-black items-center justify-center">
-            İstanbul
-          </div>
-          <span className="text-4xl flex items-center animate-pulse">
-            {Array(3)
-              .fill(0)
-              .map((_, i) => (
-                <BiChevronRight key={i} />
-              ))}
-          </span>
-          <div className="text-4xl py-4 px-8 bg-white rounded shadow-md flex justify-center items-center text-[#453976]">
-            <BiPlus />
-          </div>
-        </div>
         <div className="p-12 bg-white rounded shadow-md">
           <div className="text-3xl font-normal text-black">
             <span className="text-[#453976]">İstanbul</span> İçin Hava Durumu
