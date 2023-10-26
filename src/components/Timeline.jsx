@@ -1,19 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useContext } from 'react'
 import { FiChevronRight } from 'react-icons/fi'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { Context } from './ContextProvider'
 import 'swiper/css'
 
 export default function Timeline() {
-  const [travels, setTravels] = useState([
-    { county: 'İstanbul', day: 5 },
-    { county: 'Bursa', day: 2 },
-    { county: 'Sakarya', day: 4 },
-    { county: 'Amasya', day: 7 },
-    { county: 'Erzincan', day: 9 }
-  ])
+  const { data, updateData } = useContext(Context)
 
   return (
     <Swiper
@@ -24,17 +19,20 @@ export default function Timeline() {
         768: { slidesPerView: 4 }
       }}
     >
-      {travels.map((travel, i) => (
-        <SwiperSlide className="font-semibold" key={i}>
-          <div className="relative flex h-14 items-center justify-center rounded-lg border border-[#bfbfbf] bg-white">
-            {travel.county}
-            {i !== travels.length - 1 && (
+      {data.travels.map((travel, i) => (
+        <SwiperSlide key={i}>
+          <div
+            className="relative flex h-14 items-center justify-center rounded-lg border border-[#bfbfbf] bg-white font-semibold capitalize"
+            onMouseOver={() => updateData(travel)}
+          >
+            {travel.city} {travel.day} Gün
+            {i !== data.travels.length - 1 && (
               <span className="absolute left-full animate-pulse">
                 <div className="mx-1.5 flex space-x-1 text-2xl text-white">
                   {Array(2)
                     .fill(0)
-                    .map(() => (
-                      <FiChevronRight />
+                    .map((_, i) => (
+                      <FiChevronRight key={i} />
                     ))}
                 </div>
               </span>
@@ -42,6 +40,12 @@ export default function Timeline() {
           </div>
         </SwiperSlide>
       ))}
+
+      {!data.travels.length > 0 && (
+        <div className="relative flex h-14 items-center justify-center rounded-lg border border-[#bfbfbf] bg-white font-semibold capitalize">
+          Herhangi Bir Yolculuk Planı Yapmadınız
+        </div>
+      )}
     </Swiper>
   )
 }
