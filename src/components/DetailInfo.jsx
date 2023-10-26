@@ -1,18 +1,25 @@
 'use client'
 
 import Lottie from 'lottie-react'
+import { useContext } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import Image from 'next/image'
 
+import { Context } from './ContextProvider'
 import weather from './weather.json'
 import 'swiper/css'
 
 export default function DetailInfo() {
+  const { data } = useContext(Context)
+
   return (
-    <div className="rounded-lg border border-[#bfbfbf] bg-white p-4 shadow-md">
+    <div className="rounded-lg border border-[#bfbfbf] bg-white p-4 drop-shadow">
       <div className="text-2xl font-semibold text-black">
-        <span className="text-[#453976]">İstanbul</span> İçin Hava Durumu
+        <span className="capitalize text-[#453976]">
+          {data.activeTravel.city}
+        </span>{' '}
+        İçin Hava Durumu
       </div>
       <div className="mt-4 space-y-4 rounded-lg bg-[#453976] p-4 text-white">
         <div className="flex">
@@ -21,7 +28,9 @@ export default function DetailInfo() {
             <div className="text-xl font-semibold">Gece Açık Gökyüzü</div>
           </div>
         </div>
-        <div className="text-xl font-semibold">8 Günlük Hava Durumu</div>
+        <div className="text-xl font-semibold">
+          {data.activeTravel.day} Günlük Hava Durumu
+        </div>
         <div className="h-1 rounded-full bg-[#aaaaaa]" />
         <Swiper
           className="cursor-grab select-none"
@@ -31,14 +40,16 @@ export default function DetailInfo() {
             768: { slidesPerView: 6 }
           }}
         >
-          {Array(8)
+          {Array(data.activeTravel.day)
             .fill(0)
             .map((_, i) => (
               <SwiperSlide key={i}>
                 <div className="relative h-40 w-full overflow-hidden rounded-lg bg-[#aaaaaa]">
                   <Image
                     className="object-cover"
-                    src={`https://picsum.photos/500?random=${Math.random()}`}
+                    src="https://fakeimg.pl/100x500"
+                    alt="lorem"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     fill
                   />
                 </div>
@@ -59,7 +70,9 @@ export default function DetailInfo() {
             >
               <Image
                 className="object-cover"
-                src={`https://picsum.photos/100?random=${Math.random()}`}
+                src="https://fakeimg.pl/100x100"
+                alt="lorem"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 fill
               />
             </div>
