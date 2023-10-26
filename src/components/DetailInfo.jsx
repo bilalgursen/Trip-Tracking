@@ -37,8 +37,8 @@ export default function DetailInfo() {
               <SwiperSlide key={i}>
                 <div className="relative h-40 w-full overflow-hidden rounded-lg bg-[#aaaaaa]">
                   <Image
+                    className="object-cover"
                     src={`https://picsum.photos/500?random=${Math.random()}`}
-                    objectFit="cover"
                     fill
                   />
                 </div>
@@ -58,8 +58,8 @@ export default function DetailInfo() {
               key={i}
             >
               <Image
+                className="object-cover"
                 src={`https://picsum.photos/100?random=${Math.random()}`}
-                objectFit="cover"
                 fill
               />
             </div>
