@@ -13,9 +13,12 @@
     "react-icons": "^4.11.0"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.2.1",
     "autoprefixer": "^10",
     "daisyui": "^3.9.3",
     "postcss": "^8",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.6",
     "tailwindcss": "^3"
   }
 }
