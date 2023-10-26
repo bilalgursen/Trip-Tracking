@@ -1,9 +1,9 @@
 module.exports = {
-  content: ['./src/app/**/*.{js,jsx}'],
+  content: ['./src/**/*.{js,jsx}'],
   theme: {
     extend: {
       gridTemplateColumns: {
-        'main-grid':'1fr 3fr'
+        'main-grid': '1fr 3fr'
       }
     }
   },
