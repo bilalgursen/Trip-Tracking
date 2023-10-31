@@ -4,8 +4,6 @@ import Lottie from 'lottie-react'
 import { useContext } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import Image from 'next/image'
-
 import { Context } from './ContextProvider'
 import weather from './weather.json'
 import 'swiper/css'
@@ -44,15 +42,7 @@ export default function DetailInfo() {
             .fill(0)
             .map((_, i) => (
               <SwiperSlide key={i}>
-                <div className="relative h-40 w-full overflow-hidden rounded-lg bg-[#aaaaaa]">
-                  <Image
-                    className="object-cover"
-                    src="https://fakeimg.pl/100x500"
-                    alt="lorem"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    fill
-                  />
-                </div>
+                <div className="h-40 w-full rounded-lg bg-[#aaaaaa]" />
               </SwiperSlide>
             ))}
         </Swiper>
@@ -64,18 +54,7 @@ export default function DetailInfo() {
         {Array(21)
           .fill(0)
           .map((_, i) => (
-            <div
-              className="relative h-24 w-full overflow-hidden rounded-lg bg-[#423670]"
-              key={i}
-            >
-              <Image
-                className="object-cover"
-                src="https://fakeimg.pl/100x100"
-                alt="lorem"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                fill
-              />
-            </div>
+            <div className="h-24 w-full rounded-lg bg-[#423670]" key={i} />
           ))}
       </div>
     </div>

@@ -5,40 +5,42 @@ import { createContext, useEffect, useState } from 'react'
 export const Context = createContext()
 
 export const ContextProvider = ({ children }) => {
-  // Başlangıçta verileri boş olarak başlatın.
   const [data, setData] = useState({
     activeTravel: { city: 'Istanbul', day: 6 },
-    travels: [{ city: 'Amasya', day: 4 }]
+    travels: []
   })
 
-  // LocalStorage'dan verileri çeken bir işlev oluşturun
-  const getDataFromLocalStorage = () => {
-    const storedData = localStorage.getItem('dataset')
-    if (storedData) {
-      return JSON.parse(storedData)
-    }
-    return data // LocalStorage'da veri yoksa, mevcut veriyi kullan
-  }
-
-  // Sayfa yüklendiğinde LocalStorage'dan verileri çekin
   useEffect(() => {
-    const storedData = getDataFromLocalStorage()
-    setData(storedData)
+    const storedData = localStorage.getItem('data')
+
+    if (storedData) {
+      setData(JSON.parse(storedData))
+    }
   }, [])
 
-  // Verileri güncellediğinizde LocalStorage'a kaydedin
-  useEffect(() => {
-    localStorage.setItem('dataset', JSON.stringify(data))
-  }, [data])
+  const updateLocalStorage = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value))
+  }
 
   const addData = travel => {
-    const updatedData = { ...data, travels: [...data.travels, travel] }
-    setData(updatedData)
+    setData(prevState => {
+      const newTravels = [...prevState.travels, travel]
+      const newData = { ...prevState, travels: newTravels }
+
+      updateLocalStorage('data', newData)
+
+      return newData
+    })
   }
 
   const updateData = travel => {
-    const updatedData = { activeTravel: travel, travels: [...data.travels] }
-    setData(updatedData)
+    setData(prevState => {
+      const newData = { ...prevState, activeTravel: travel }
+
+      updateLocalStorage('data', newData)
+
+      return newData
+    })
   }
 
   return (
