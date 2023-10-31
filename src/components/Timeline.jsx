@@ -10,7 +10,7 @@ import 'swiper/css'
 export default function Timeline() {
   const { data, updateData } = useContext(Context)
 
-  return (
+  return data.travels.length > 0 ? (
     <Swiper
       className="cursor-grab select-none"
       spaceBetween={64}
@@ -40,12 +40,10 @@ export default function Timeline() {
           </div>
         </SwiperSlide>
       ))}
-
-      {!data.travels.length > 0 && (
-        <div className="relative flex h-14 items-center justify-center rounded-lg border border-[#bfbfbf] bg-white font-semibold capitalize">
-          Herhangi Bir Yolculuk Planı Yapmadınız
-        </div>
-      )}
     </Swiper>
+  ) : (
+    <div className="relative flex h-14 items-center justify-center rounded-lg border border-[#bfbfbf] bg-white font-semibold capitalize">
+      Herhangi Bir Yolculuk Planı Yapmadınız
+    </div>
   )
 }
