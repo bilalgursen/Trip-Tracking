@@ -2,6 +2,8 @@
 
 import { useContext } from 'react'
 import { FiChevronRight } from 'react-icons/fi'
+import { FiPlus } from 'react-icons/fi'
+import { FiMinus } from 'react-icons/fi'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { Context } from './ContextProvider'
@@ -27,13 +29,13 @@ export default function Timeline() {
           >
             {travel.city}{' '}
             <span className="absolute -left-4 -top-4  cursor-pointer rounded-lg border border-[#bfbfbf] bg-white p-1 px-3 text-xs">
-              +
+              <FiPlus className="h-4 w-4" />
             </span>
             <span className="pill absolute -top-4 rounded-lg border border-[#bfbfbf] bg-white p-1 text-xs">
               {travel.day} Gün
             </span>
             <span className="absolute -right-4 -top-4 cursor-pointer rounded-lg border border-[#bfbfbf] bg-white p-1 px-3 text-xs">
-              -
+              <FiMinus className="h-4 w-4" />
             </span>{' '}
             {i !== data.travels.length - 1 && (
               <span className="absolute left-full animate-pulse">
