@@ -7,6 +7,7 @@ import { FiMinus } from 'react-icons/fi'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { Context } from './ContextProvider'
+import Badge from './ui/badge'
 import 'swiper/css'
 
 export default function Timeline() {
@@ -14,7 +15,7 @@ export default function Timeline() {
 
   return data.travels.length > 0 ? (
     <Swiper
-      className="cursor-grab select-none !overflow-visible"
+      className="cursor-grab select-none"
       spaceBetween={64}
       slidesPerView={2}
       breakpoints={{
@@ -28,15 +29,13 @@ export default function Timeline() {
             onMouseOver={() => updateData(travel)}
           >
             {travel.city}{' '}
-            <span className="absolute -left-4 -top-4  cursor-pointer rounded-lg border border-[#bfbfbf] bg-white p-1 px-3 text-xs">
+            <Badge customClass="left-0">
               <FiPlus className="h-4 w-4" />
-            </span>
-            <span className="pill absolute -top-4 rounded-lg border border-[#bfbfbf] bg-white p-1 text-xs">
-              {travel.day} Gün
-            </span>
-            <span className="absolute -right-4 -top-4 cursor-pointer rounded-lg border border-[#bfbfbf] bg-white p-1 px-3 text-xs">
+            </Badge>
+            <Badge>{travel.day} Gün</Badge>
+            <Badge customClass="right-0">
               <FiMinus className="h-4 w-4" />
-            </span>{' '}
+            </Badge>{' '}
             {i !== data.travels.length - 1 && (
               <span className="absolute left-full animate-pulse">
                 <div className="mx-1.5 flex space-x-1 text-2xl text-white">
