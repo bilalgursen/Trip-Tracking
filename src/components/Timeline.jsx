@@ -29,11 +29,11 @@ export default function Timeline() {
             onMouseOver={() => updateData(travel)}
           >
             {travel.city}{' '}
-            <Badge customClass="left-0">
+            <Badge className="left-0">
               <FiPlus className="h-4 w-4" />
             </Badge>
             <Badge>{travel.day} Gün</Badge>
-            <Badge customClass="right-0">
+            <Badge className="right-0">
               <FiMinus className="h-4 w-4" />
             </Badge>{' '}
             {i !== data.travels.length - 1 && (
