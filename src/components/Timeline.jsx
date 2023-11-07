@@ -11,20 +11,7 @@ import Badge from './ui/badge'
 import 'swiper/css'
 
 export default function Timeline() {
-  const { data, updateData } = useContext(Context)
-  const { activeTravel } = data
-
-  const handleDayChange = changeAmount => {
-    // Mevcut seyahati kopyalamak için sprit operatörü
-    const updatedTravel = { ...activeTravel }
-    console.log(data)
-
-    // Day değerini artır veya azalt
-    updatedTravel.day += changeAmount
-
-    // Verileri güncelle
-    updateData(updatedTravel)
-  }
+  const { data, updateData, handleMinus, handlePlus } = useContext(Context)
 
   return data.travels.length > 0 ? (
     <Swiper
@@ -42,11 +29,23 @@ export default function Timeline() {
             onMouseOver={() => updateData(travel)}
           >
             {travel.city}{' '}
-            <Badge className="left-0" onClick={() => handleDayChange(1)}>
+            <Badge
+              className="left-0"
+              onClick={() => {
+                updateData(travel)
+                handlePlus(travel.city)
+              }}
+            >
               <FiPlus className="h-4 w-4" />
             </Badge>
             <Badge>{travel.day} Gün</Badge>
-            <Badge className="right-0" onClick={() => handleDayChange(-1)}>
+            <Badge
+              className="right-0"
+              onClick={() => {
+                updateData(travel)
+                handleMinus(travel.city)
+              }}
+            >
               <FiMinus className="h-4 w-4" />
             </Badge>{' '}
             {i !== data.travels.length - 1 && (

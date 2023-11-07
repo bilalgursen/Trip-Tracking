@@ -33,6 +33,40 @@ export const ContextProvider = ({ children }) => {
     })
   }
 
+  function handlePlus(city) {
+    setData(prevState => {
+      const newTravels = prevState.travels.map(travel => {
+        if (travel.city === city) {
+          return { ...travel, day: travel.day++ }
+        }
+        return travel
+      })
+
+      const newData = { ...prevState, travels: newTravels }
+
+      updateLocalStorage('data', newData)
+
+      return newData
+    })
+  }
+
+  function handleMinus(city) {
+    setData(prevState => {
+      const newTravels = prevState.travels.map(travel => {
+        if (travel.city === city && travel.day > 0) {
+          return { ...travel, day: travel.day-- }
+        }
+        return travel
+      })
+
+      const newData = { ...prevState, travels: newTravels }
+
+      updateLocalStorage('data', newData)
+
+      return newData
+    })
+  }
+
   const updateData = travel => {
     setData(prevState => {
       const newData = { ...prevState, activeTravel: travel }
@@ -44,7 +78,9 @@ export const ContextProvider = ({ children }) => {
   }
 
   return (
-    <Context.Provider value={{ data, addData, updateData }}>
+    <Context.Provider
+      value={{ data, addData, updateData, handlePlus, handleMinus }}
+    >
       {children}
     </Context.Provider>
   )
