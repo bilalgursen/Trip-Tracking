@@ -10,7 +10,7 @@ export default function AddTravel() {
   function handleSubmit(e) {
     e.preventDefault()
 
-    addData({ city: e.target.city.value, day: 12 })
+    addData({ city: e.target.city.value, day: 1 })
 
     e.target.city.value = ''
   }
