@@ -2,7 +2,7 @@
 
 import Lottie from 'lottie-react'
 
-import travel from './travel.json'
+import travel from '@/lotties/travel'
 
 export default function Footer() {
   return (

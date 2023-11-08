@@ -1,18 +1,30 @@
 'use client'
 
+import { nanoid } from 'nanoid'
+
 import { useContext } from 'react'
 
-import { Context } from './ContextProvider'
+import { Context } from '../providers/ContextProvider'
 
 export default function AddTravel() {
-  const { addData } = useContext(Context)
+  const { travels, setTravels, setActiveTravel } = useContext(Context)
 
-  function handleSubmit(e) {
+  const handleSubmit = e => {
     e.preventDefault()
 
-    addData({ city: e.target.city.value, day: 1 })
+    addTravel({ id: nanoid(), city: e.target.city.value, day: 1 })
 
     e.target.city.value = ''
+  }
+
+  const addTravel = travel => {
+    const newTravels = [...travels, travel]
+
+    localStorage.setItem('activeTravel', JSON.stringify(travel))
+    localStorage.setItem('travels', JSON.stringify(newTravels))
+
+    setActiveTravel(travel)
+    setTravels(newTravels)
   }
 
   return (
