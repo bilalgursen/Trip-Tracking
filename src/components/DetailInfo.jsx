@@ -4,19 +4,17 @@ import Lottie from 'lottie-react'
 import { useContext } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { Context } from './ContextProvider'
-import weather from './weather.json'
+import { Context } from '../providers/ContextProvider'
+import weather from '@/lotties/weather'
 import 'swiper/css'
 
 export default function DetailInfo() {
-  const { data } = useContext(Context)
+  const { activeTravel } = useContext(Context)
 
   return (
     <div className="rounded-lg border border-[#bfbfbf] bg-white p-4 drop-shadow">
       <div className="text-2xl font-semibold text-black">
-        <span className="capitalize text-[#453976]">
-          {data.activeTravel.city}
-        </span>{' '}
+        <span className="capitalize text-[#453976]">{activeTravel.city}</span>{' '}
         İçin Hava Durumu
       </div>
       <div className="mt-4 space-y-4 rounded-lg bg-[#453976] p-4 text-white">
@@ -27,7 +25,7 @@ export default function DetailInfo() {
           </div>
         </div>
         <div className="text-xl font-semibold">
-          {data.activeTravel.day} Günlük Hava Durumu
+          {activeTravel.day} Günlük Hava Durumu
         </div>
         <div className="h-1 rounded-full bg-[#aaaaaa]" />
         <Swiper
@@ -38,7 +36,7 @@ export default function DetailInfo() {
             768: { slidesPerView: 6 }
           }}
         >
-          {Array(data.activeTravel.day)
+          {Array(activeTravel.day)
             .fill(0)
             .map((_, i) => (
               <SwiperSlide key={i}>
